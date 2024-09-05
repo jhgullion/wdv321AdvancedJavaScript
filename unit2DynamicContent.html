@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+
+        let productNames = ["Hammer","Pliers","Screwdriver","Tape"];
+        let productNumber = ["hm10", "pl4-4","phillips4","12footmetal"];
+
+        //technique 1. Use document.write to create the options
+
+        let productNames2 = ["Stapler","Pen","Pencil"];
+        let productNumber2 = ["redStaple","blue20Stick","arro6mm"];
+
+        /* What happens when you want to see the list of Office Products
+
+            get rid of the tools in the list
+                find a technique/command to delete the options 
+            place the office products in the list
+                find a technique to put the options back on the page
+
+        */
+
+        function changeSelect(){
+            alert("inside changeSelect()");
+            //remove the existing options
+            console.log( document.querySelector("#productList") );
+            let selectObject = document.querySelector("#productList");
+            console.log(selectObject);
+            //use a loop to remove some number of options from selectObject
+            console.log( document.querySelector("#productList").length);
+            console.log("selectObject.length: " + selectObject.length);
+            //for(let i=0;i<selectObject.length;i++){
+            //    selectObject.remove(i);     //remove expects the index position to remove
+            //}
+            for(let i=selectObject.length; i>1; i--){
+                selectObject.remove(1);     //remove expects the index position to remove
+            } 
+
+            //add new options
+                //create the new option object
+                let optionObject = document.createElement("option");
+                console.log( optionObject );
+                //populate the option object with name and product number
+                optionObject.setAttribute("value",'redStaple');
+                console.log( optionObject );
+                optionObject.innerHTML = "Stapler";
+                console.log( optionObject );
+                //add the new option object/element to the select object in the dom
+                //selectObject.add(optionObject);
+                selectObject.appendChild(optionObject);  
+
+
+        }
+
+    </script>
+    <script>
+
+        function pageSetup(){
+            //this function will run AFTER the page/document has fully loaded
+
+            document.querySelector("button").onclick = function(){
+                changeSelect();    
+            } 
+
+            //document.querySelector("button").addEventListener('click',changeSelect);
+        }
+
+
+    </script>
+</head>
+<body onload="pageSetup()">
+    <h1>WDV321 Advanced JavaScript</h1>
+    <h2>Unit-2 Dynamic Content </h2>
+    <p>
+        <select name="productList" id="productList" onchange="chooseProduct()">
+            <option value=" ">Choose a Product</option>
+            <script>
+                //this occurs at runtime
+                for(let x=0; x<productNames.length; x++){
+                    document.write("<option value='" + productNumber[x]  + "'>" + productNames[x]+ "</option>");
+                }
+            </script>
+        </select>
+    </p>
+    <p>
+        <button>Show Office Products</button>
+    </p>
+</body>
+</html>
