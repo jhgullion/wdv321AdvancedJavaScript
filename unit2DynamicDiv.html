@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+        .productCard {
+            width: 300px;
+            background-color: aquamarine;
+            padding:5px;
+            border:thin solid blue;
+            border-radius: 15%;
+        }
+
+        .saleNotice {
+            color:red;
+            font-weight: bold;
+        }
+
+
+    </style>
+    <script>
+        let products = [];
+
+        let product1 = {
+            prodName:"Pencil",
+            prodPrice:.49,
+            prodDesc: "Wooden type two pencils. Sold individually",
+            prodSale: false
+        }
+
+        let product2 = {
+            prodName:"Pen",
+            prodPrice:1.49,
+            prodDesc: "Blue ink plastic cap pen",
+            prodSale: true
+        }
+
+        products.push(product1);
+        products.push(product2);
+
+        //Arrow Function
+        createProductCards = (inProductArray) => {
+            //use the products array to dynamically create products card on the page
+            //use createElement()
+                //this works well After run time
+            //use a loop to build one card for every product in inProductArray
+
+            for(let x=0; x<inProductArray.length;x++){
+
+                //create div object
+                let divObject = document.createElement("div");  //create a div object
+                console.log(divObject);
+                divObject.setAttribute("class","productCard");
+                console.log(divObject);
+
+                //create p Product Name object
+                let pObject = document.createElement("p");
+                pObject.innerHTML = inProductArray[x].prodName;
+                console.log(pObject);
+
+                //create p Product Price object
+                //  note this has a span object within the paragraph
+                let spanObject = document.createElement("span");
+                spanObject.setAttribute("class","saleNotice");
+                if(inProductArray[x].prodSale){
+                    //if prodSale is true then display the words "On Sale!" in the saleNotice object
+                    spanObject.innerHTML = "On Sale!";
+                }
+
+                let pricePObject = document.createElement("p");
+                pricePObject.innerHTML = inProductArray[x].prodPrice;
+
+                console.log("Product Price paragraph");
+                console.log(spanObject);
+                console.log(pricePObject);
+
+                pricePObject.appendChild(spanObject);
+                console.log(pricePObject);
+
+                //create p Product Description object
+                let prodDescPObject = document.createElement("p");
+                prodDescPObject.innerHTML = inProductArray[x].prodDesc;
+                console.log(prodDescPObject);
+
+                //combine the p objects into the div object
+                divObject.appendChild(pObject);
+                divObject.appendChild(pricePObject);
+                divObject.appendChild(prodDescPObject);
+                console.log(divObject);
+
+                document.querySelector("section").appendChild(divObject);
+            }
+
+        }
+
+        
+
+        function pageSetup(){
+            //will run AFTER the page is fully loaded.
+
+            createProductCards(products);   //needs to run AFTER the page is loaded   
+        }
+
+    </script>
+</head>
+<body onload="pageSetup()">
+    <h1>WDV321 Advanced JavaScript</h1>
+    <h2>Unit-2 Dynamic Content - Dynamic Divs</h2>
+
+    <script>
+        //loop through the products array, put the array info into the output fields
+        //display the formatted HTML line to the page (document.write)
+        for(let x=0; x<products.length; x++){
+            document.write("<div class='productCard'>");
+            document.write("<p>" + products[x].prodName + "</p>");
+            document.write("<p>" + products[x].prodPrice + "<span class='saleNotice'>" + products[x].prodSale + "</span></p>")
+            document.write("<p>" + products[x].prodDesc + "</p>");
+            document.write("</div>");
+        }
+
+
+
+    </script>
+    <div class="productCard">
+        <p>Product Name - Sample Card</p>
+        <p>Product Price <span class="saleNotice"></span></p>
+        <p>Product Description</p>
+    </div>
+
+    <h3>The following data cards were dynamically created using createElement()</h3>
+    <section>
+
+    </section>
+
+
+</body>
+</html>

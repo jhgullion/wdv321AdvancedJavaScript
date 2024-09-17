@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .red    {background-color: red;}
+        .green  {background-color: green;}
+        .blue   {background-color: blue;}
+
+    </style>
+    <script>
+
+        function hideDiv(inClassName){
+            //use the CSS display property to assign a hidden value to display
+            document.querySelector("." + inClassName).style.visibility = "hidden";
+        }
+
+        function showDiv(inClassName){
+            document.querySelector("." + inClassName).style.visibility = "visible";
+        }
+
+        function removeDiv(inClassName){
+            //use the CSS display property to remove a div
+            document.querySelector("."+inClassName).style.display = "none";
+        }
+
+        function returnDiv(inClassName){
+            document.querySelector("."+inClassName).style.display = "block";
+        }
+
+    </script>
+
+</head>
+<body>
+    <h1>WDV321 Advanced JavaScript</h1>
+    <h2>Unit-2 CSS Display Properties</h2>
+    <div class="red" style="background-color:bisque;">RED</div>
+    <div class="green">GREEN</div>
+    <div class="blue">BLUE</div>
+
+    <p>
+        <button onclick="hideDiv('green')">Hide Green</button>
+        <button onclick="showDiv('green')">Show Green</button>
+    </p>
+    <p>
+        <button onclick="removeDiv('green')">Remove Green</button>
+        <button onclick="returnDiv('green')">Return Green</button>
+    </p>
+
+    <script>
+        console.log( document.querySelector(".red").style.backgroundColor );
+    </script>
+</body>
+</html>
